@@ -74,11 +74,11 @@ class Dog
     DB[:conn].execute(sql, self.name, self.breed, self.id)
   end
   
-  def self.find_by_name(name)
+  def self.find_by_id(name)
     sql = <<-SQL
     SELECT *
     FROM dogs
-    WHERE name = ?
+    WHERE id = ?
     LIMIT 1
     SQL
  
