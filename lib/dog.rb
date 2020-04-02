@@ -31,13 +31,13 @@ class Dog
       self.update
     else
       sql = <<-SQL
-        INSERT INTO students (name, grade) 
+        INSERT INTO dogs (name, breed) 
         VALUES (?, ?)
       SQL
   
-      DB[:conn].execute(sql, self.name, self.grade)
+      DB[:conn].execute(sql, self.name, self.breed)
   
-      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs")[0][0]
     end
   end
   
@@ -52,7 +52,7 @@ class Dog
     def self.find_by_name(name)
       sql = <<-SQL
       SELECT *
-      FROM students
+      FROM dog
       WHERE name = ?
       LIMIT 1
     SQL
@@ -62,8 +62,8 @@ class Dog
     end.first
   end
   
-    def self.create(name, grade)
-    new_student = self.new(name, grade)
+    def self.create(name, breed)
+    new_student = self.new(name: name, breed: breed)
     new_student.save
   end
   
